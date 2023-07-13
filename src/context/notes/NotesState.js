@@ -77,7 +77,7 @@ const NoteState = (props)=>{
           break;        
         }
       }
-      setNotes(newNotes)
+      setNotes(newNotes)      
     }
 
     return (
