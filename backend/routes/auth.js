@@ -13,6 +13,7 @@ router.post('/createuser', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password must be atleast 5 characters').isLength({min: 5}),
 ] ,async (req,res)=>{
+    let sucess=false;
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()});
@@ -40,7 +41,8 @@ router.post('/createuser', [
         }
     }
     const authToken = jwt.sign(data, JWT_SECRET);
-    res.json({authToken});    
+    sucess=true;
+    res.json({sucess, authToken});    
 })
 
 // ROUTE2 Authenticating a User using: POST "/api/auth/login". No login required
