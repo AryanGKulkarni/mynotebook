@@ -48,6 +48,7 @@ router.post('/login', [
     body('email','Please enter a valid email').isEmail(),
     body('password', 'password cannot be blak').exists(),
 ] ,async (req,res)=>{
+    let sucess = false; 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()});
@@ -71,7 +72,8 @@ router.post('/login', [
             }
         }
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({authToken});
+        sucess=true;
+        res.json({sucess, authToken});
 
 
     } catch (error) {
