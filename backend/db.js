@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
+require('dotenv').config({ path: '../.env' });
 
-const mongoURI = "mongodb+srv://***:***@cluster1.vdxxkyt.mongodb.net/inotebook"
+
+
+const mongoURI = process.env.REACT_APP_SECRET_KEY;
 
 const connectToMongo = ()=>{
     mongoose.connect(mongoURI, ()=>{
